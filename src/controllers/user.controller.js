@@ -38,3 +38,14 @@ module.exports.getOne = (req, res) => {
         res.status(400).json({ error: "user not found!"});
     }
  }
+
+module.exports.delete = (req, res) => {
+    const userId = req.params.id;
+
+    if(userId < userData.length) {
+        userData.splice(userId, 1);
+        res.status(200).json({message: `User with ID: ${userId} was deleted`});
+    } else {
+        res.status(400).json({ error : 'user not found!'});
+    }        
+}
