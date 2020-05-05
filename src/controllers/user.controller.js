@@ -22,3 +22,19 @@ module.exports.getOne = (req, res) => {
         res.status(400).json({ error: "user not found!"});
     }
 }
+
+ module.exports.update = (req, res) => {
+    const userId = req.params.id;
+    const updateData = req.body;
+
+    if(userId < userData.length){
+        let attrs = Object.getOwnPropertyNames(updateData);
+        for(const attr of attrs) {
+            userData[userId][attr] = updateData[attr];
+        }
+    
+        res.status(200).json(userData[userId]);
+    } else {
+        res.status(400).json({ error: "user not found!"});
+    }
+ }
