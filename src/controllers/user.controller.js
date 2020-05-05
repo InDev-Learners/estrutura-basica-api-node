@@ -12,3 +12,13 @@ module.exports.create = (req, res) => {
     userData.push(newUser);
     res.status(201).json(newUser);
 }
+
+module.exports.getOne = (req, res) => {
+    const userId = req.params.id;
+
+    if (userId < userData.length) {
+        res.status(200).json(userData[userId]);
+    } else {
+        res.status(400).json({ error: "user not found!"});
+    }
+}
